@@ -32,8 +32,6 @@ function App() {
         <MenuModal />
       </Router>
       <footer className="h-12 bg-white flex items-center">
-          <FaGithub className="w-full h-full text-gray-500" />
-        </a>
       </footer>
     </div>
   )
