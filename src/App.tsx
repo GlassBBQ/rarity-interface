@@ -5,6 +5,7 @@ import Token from './pages/Token'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import MenuModal from './components/MenuModal'
+import { FaDonate } from 'react-icons/fa'
 
 function App() {
   return (
@@ -30,7 +31,12 @@ function App() {
         </div>
         <MenuModal />
       </Router>
-      <footer className="h-12 bg-white flex items-center">
+      <footer className="h-12 flex justify-center items-center">
+        <p
+          className="w-5 h-5"
+        >
+          <FaDonate className="w-full h-full text-gray-500" /></p>&nbsp;&nbsp;ELA: EY6fRgmt9B67af7ARThzrC5ToWbCmrcNSj | ESC: 0xB70AA99199D449bEf0E974f6b27b5ED3E50AB0C8
+        
       </footer>
     </div>
   )
