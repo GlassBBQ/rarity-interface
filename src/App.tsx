@@ -32,10 +32,6 @@ function App() {
         <MenuModal />
       </Router>
       <footer className="h-12 bg-white flex items-center">
-        <a
-          href="https://github.com/mikko-o/rarity-analyser"
-          className="w-5 h-5 ml-6"
-        >
           <FaGithub className="w-full h-full text-gray-500" />
         </a>
       </footer>
