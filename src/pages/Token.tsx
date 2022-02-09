@@ -12,7 +12,6 @@ import config from '../rarityConfig'
 import { useQuery } from '@apollo/client'
 import { GET_TOKEN } from '../queries'
 import Loader from '../components/Loader'
-import { useOpenSeaOrder } from '../hooks/useOpenSeaOrders'
 
 const Token: React.FC = () => {
   const { search } = useLocation<{ token: TokenInterface }>()
@@ -26,7 +25,6 @@ const Token: React.FC = () => {
     },
   })
 
-  const order = useOpenSeaOrder(Number(id))
 
   const token = data?.token
 
@@ -76,14 +74,12 @@ const Token: React.FC = () => {
               </div>
             </div>
 
-            {order ? (
-              <a
+            <a
                 className="text-base mx-2 md:mx-8 px-2 text-blue-700"
-                href={`https://opensea.io/assets/${config.contractAddress}/${order.asset.token_id}`}
+                href={`https://ela.city/marketplace/${config.contractAddress}/${id}`}
               >
-                {order.base_price / 1e18} ETH
+                Elacity Page
               </a>
-            ) : null}
             <Attributes attributes={token?.attributes} />
           </div>
         </div>

@@ -57,7 +57,7 @@ const ProjectLinks: React.FC = () => {
         </a>
       ) : null}
       {config.links.etherscan ? (
-        <a href={config.links.etherscan}>Etherscan</a>
+        <a href={config.links.etherscan}>ESC Explorer</a>
       ) : null}
     </div>
   )

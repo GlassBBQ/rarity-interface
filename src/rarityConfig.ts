@@ -17,7 +17,14 @@ interface Config {
 }
 
 const config: Config = {
-  contractAddress: '',
+  contractAddress: '0xE27934fB3683872e35b8d9E57c30978e1260c614',
+  mainImageKey: 'image',
+  headerText: 'Bunny Punk',
+  logoURL: 'https://gateway.pinata.cloud/ipfs/QmVniKr22tvN7GHuYJ9LNGmRLJCVCwWW9BEYtcDpJTVm72',
+  links: {
+    website: 'https://www.bunnypunk.io/',
+    twitter: 'https://twitter.com/Bunny_Punk_NFT',
+  },
 }
 
 export default config
