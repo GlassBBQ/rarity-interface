@@ -5,7 +5,6 @@ import Token from './pages/Token'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import MenuModal from './components/MenuModal'
-import { FaGithub } from 'react-icons/fa'
 
 function App() {
   return (
