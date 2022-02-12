@@ -280,7 +280,7 @@ const Card: React.FC<CardProps> = ({ token }) => {
         
         <button onClick={() => history.push(`/token?id=${token.id}`)}>
           <a href={`/token?id=${token.id}`}>
-          <div style={{display: imgloading ? "block" : "none", alignItems: 'center'}}>
+          <div className='mr-2 ml-2' style={{display: imgloading ? "block" : "none", alignItems: 'center'}}>
        <Loader />
     </div>
     <div className='mr-2 ml-2' style={{visibility: imgloading ? "hidden" : "visible", position: imgloading ? 'fixed' : 'inherit'}}>
