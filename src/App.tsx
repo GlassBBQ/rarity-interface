@@ -8,6 +8,7 @@ import MenuModal from './components/MenuModal'
 import { FaDonate } from 'react-icons/fa'
 
 function App() {
+  
   return (
     <div>
       <Router>

@@ -13,6 +13,7 @@ import { useQuery } from '@apollo/client'
 import { GET_TOKEN } from '../queries'
 import Loader from '../components/Loader'
 
+
 const Token: React.FC = () => {
   const { search } = useLocation<{ token: TokenInterface }>()
   const history = useHistory()
@@ -35,8 +36,10 @@ const Token: React.FC = () => {
 
   if (!token)
     return (
-      <div className="w-full flex justify-center pt-10">
+      <div className="w-full mt-6 items-center justify-center">
         <Loader />
+        <br />
+        <h1 className="text-lg sm:text-xl ml-2 sm:ml-5" style={{marginLeft: 'auto', marginRight: 'auto', textAlign: 'center'}}>Loading... </h1>
       </div>
     )
 

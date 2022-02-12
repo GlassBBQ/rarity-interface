@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import useDarkMode from 'use-dark-mode'
 
