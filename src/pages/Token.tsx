@@ -5,7 +5,7 @@ import { Attribute, Token as TokenInterface } from '../types'
 import './Token.css'
 import { formatNumber, formatURL } from '../utils'
 import { TraitContext } from '../components/TraitContext'
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import useMeta from '../hooks/useMeta'
 import { RarityModeContext } from '../components/RarityModeContext'
 import config from '../rarityConfig'
@@ -25,6 +25,27 @@ const Token: React.FC = () => {
       id: Number(id),
     },
   })
+
+  const [items, setItems] = useState(0)
+
+      useEffect(() => {
+        fetch('https://ela.city/api/nftitems/getSingleItemDetails', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({ "contractAddress": "0xe27934fb3683872e35b8d9e57c30978e1260c614", "tokenID": id }) // body data type must match "Content-Type" header
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            //console.log(data.data.price)
+            setItems(data.data.price)
+          })
+          // eslint-disable-next-line
+      }, [])
 
 
   const token = data?.token
@@ -83,6 +104,9 @@ const Token: React.FC = () => {
               >
                 Elacity Page
               </a>
+              <div className='px-2 mx-2 md:mx-8 px-2'>
+              <img src={'elalogoF.png'} alt="" style={{display: items > 0 ? 'inline' : 'none', margin: '0 0.125em', padding: '0', verticalAlign: 'middle', maxWidth: '1.125rem'}} />{items > 0 ? items : ""}
+              </div>
             <Attributes attributes={token?.attributes} />
           </div>
         </div>

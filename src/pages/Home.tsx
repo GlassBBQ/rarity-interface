@@ -19,9 +19,12 @@ import {
 import './Home.css'
 import { Switch } from '@headlessui/react'
 
-const tokensPerPage = 15
+
+
+const tokensPerPage = 20
 
 function Home() {
+  
   const history = useHistory()
   const { page: pageParam } = parse(history.location.search)
 
@@ -80,11 +83,22 @@ function Home() {
     return numTokens ? Math.ceil(numTokens / tokensPerPage) : undefined
   }, [metadata, search, tokenCount])
 
-  
-
   return (
-    <main className="content flex flex-col items-center mx-4 md:mx-6 lg:mx-8 xl:mx-10">
-      <div className="wrap w-full flex items-center">
+    <main className="">
+<div className="bg-cover  bg-center w-full  h-auto text-white py-24 px-10 object-fill" style={{background: 'linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.4) ), url(https://uploads-ssl.webflow.com/61d9a8a4e852ac3d2851ff2e/61da212b5343379166db67da_banner_new.png) center center no-repeat', backgroundSize: 'cover', backgroundColor: "rgba(0,0,0,0.9)"}}>
+       <div className="md:w-1/2">
+        <p className="font-bold text-sm">Bunny Punk is a collection of 1,000 unique 3D well-designed Bunnies united together to get on the Elastos Smart chain
+<br />
+Each Bunny Punk is unique and exclusive based on a hundred traits.
+The objective is to build the strongest Elastos NFT community and project.</p>
+        {/* <p className="text-3xl font-bold">Multimedia products</p>
+        <p className="text-2xl mb-10 leading-none">Atractive designs for your brand</p>
+        <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a> */}
+        </div>  
+    </div>
+    <div className="content flex flex-col items-center mx-4 md:mx-6 lg:mx-8 xl:mx-10">
+      
+      <div className='wrap w-full flex items-center' >
       <div className="hidden lg:flex text-gray-700 mr-6 text-sm leading-tight my-3">
         Trait normalization
       </div>
@@ -112,6 +126,7 @@ function Home() {
         setPage={setPage}
         pageCount={pageCount}
       />
+      </div>
     </main>
   )
 }
@@ -226,7 +241,7 @@ const Card: React.FC<CardProps> = ({ token }) => {
   //   maxConcurrent: 1,
   //   minTime: 333
   // });
-
+  
   const [imgloading, imgsetLoading] = useState(true);
   const history = useHistory()
   const { normalized } = useContext(RarityModeContext)
@@ -246,8 +261,7 @@ const Card: React.FC<CardProps> = ({ token }) => {
     const imageLoaded = () => {
         imgsetLoading(false);
     }
-
-
+    
    
     function loadImage(URL: any, retries = 50) {
       var img = new Image();
@@ -261,12 +275,37 @@ const Card: React.FC<CardProps> = ({ token }) => {
       }
       return img.src;
       }
+
+      const [items, setItems] = useState(0)
+
+      useEffect(() => {
+        fetch('https://ela.city/api/nftitems/getSingleItemDetails', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify({ "contractAddress": "0xe27934fb3683872e35b8d9e57c30978e1260c614", "tokenID": id }) // body data type must match "Content-Type" header
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            //console.log(data.data.price)
+            setItems(data.data.price)
+          })
+          // eslint-disable-next-line
+      }, [])
     
   return (
     <div className="">
-      <div className="cardd">
+      <div className={`cardd justify-center ${items > 0 ? 'border-solid border-4 border-green-300' : ""}`}>
       <div className="ml-2 text-xl lg:text-lg flex font-gray-700 whitespace-nowrap flex-wrap justify-between tracking-tight font-bold">
-        #{normalized ? rank_normalized : rank}
+        <div>
+        #{normalized ? rank_normalized : rank}</div>
+        <div className='mr-2'>
+        <img src={'elalogoF.png'} alt="" style={{display: items > 0 ? 'inline' : 'none', margin: '0 0.125em', padding: '0', verticalAlign: 'middle', maxWidth: '1.125rem'}} />{items > 0 ? items : ""}
+        </div>
       </div>
       <div
         className="flex rounded-md"

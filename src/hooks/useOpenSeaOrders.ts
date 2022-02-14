@@ -5,19 +5,31 @@ import { OpenSeaOrder } from '../types'
 const idsToQuery = (ids: number[]) =>
   ids.reduce((qs, id) => `${qs}&token_ids=${id}`, '')
 
+
 const options = { method: 'GET', headers: { Accept: 'application/json' } }
 
 export const getOpenSeaOrders = (tokenIds: number[]) =>
-  fetch(
-    `https://api.opensea.io/wyvern/v1/orders?asset_contract_address=${
-      config.contractAddress
-    }&bundled=false&include_bundled=false&include_invalid=false${idsToQuery(
-      tokenIds
-    )}&side=1&limit=20&offset=0&order_by=created_date&order_direction=desc`,
-    options
-  )
+  // fetch(
+  //   `https://api.opensea.io/wyvern/v1/orders?asset_contract_address=${
+  //     config.contractAddress
+  //   }&bundled=false&include_bundled=false&include_invalid=false${idsToQuery(
+  //     tokenIds
+  //   )}&side=1&limit=20&offset=0&order_by=created_date&order_direction=desc`,
+  //   options
+  // )
+  fetch('https://ela.city/api/nftitems/getSingleItemDetails', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify(`{ "contractAddress": "0xe27934fb3683872e35b8d9e57c30978e1260c614", "tokenID": ${idsToQuery(tokenIds)} }`) // body data type must match "Content-Type" header
+  })
     .then((response) => response.json())
     .then((data) => data.orders as OpenSeaOrder[])
+
 
 const useOpenSeaOrders = (tokenIds: number[] | undefined) => {
   const [orders, setOrders] = useState<OpenSeaOrder[]>([])

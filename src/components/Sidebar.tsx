@@ -5,7 +5,7 @@ import { RarityModeContext } from './RarityModeContext'
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="hidden h-full overflow-auto lg:flex flex-col items-center bg-white-100">
+    <div className="hidden sticky max-h-screen  self-start overflow-y-auto top-0 lg:flex flex-col items-center bg-white-100">
       <div className="w-5/6">
         <TraitMenu />
       </div>
